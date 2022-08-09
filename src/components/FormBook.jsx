@@ -35,8 +35,10 @@ export function FormBook() {
     fetch(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${sigla}/municipios`)
       .then(response => response.json())
       .then(data => {
-
-        setCidades(data)
+        // console.log('cidades', data)
+        setCidades( data.map(city => <option>{city.nome}</option>)
+        )
+       
       })
 
   }
@@ -107,14 +109,9 @@ export function FormBook() {
         <Form.Group as={Col} md="3" controlId="validationCustom04">
           <Form.Label>Cidade</Form.Label>
           <Form.Select
-            aria-label="Default select example"
-            onChange={e => {
-
-              let sigla = e.target.value;
-              fetchCidades(sigla)
-            }}>
+            aria-label="Default select example">
             <option>Selecione...</option>
-            {estados.map(estado => <option value={estado.sigla}>{estado.nome}</option>)}
+            {cidades}
           </Form.Select>
         </Form.Group>
       </Row>
