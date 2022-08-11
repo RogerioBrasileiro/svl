@@ -36,9 +36,9 @@ export function FormBook() {
       .then(response => response.json())
       .then(data => {
         // console.log('cidades', data)
-        setCidades( data.map(city => <option>{city.nome}</option>)
+        setCidades(data.map(city => <option>{city.nome}</option>)
         )
-       
+
       })
 
   }
